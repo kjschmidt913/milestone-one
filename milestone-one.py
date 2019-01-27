@@ -44,6 +44,10 @@ def choose():
         choiceColumn = input("Column Number: ")
         choiceRow = input("Row Number: ")
 
+        if (not int(choiceRow) in range(1, 4)) or (not int(choiceColumn) in range(1, 4)):
+            print("Invalid space. Please enter valid numbers")
+            continue
+
         #if it's player one
         if (len(playerOneChoices) == len(playerTwoChoices)):
             playerOneChoices.append([int(choiceColumn), int(choiceRow)])
@@ -94,5 +98,3 @@ def choose():
                 continue
         
 choose()
-
-def checkWinner():
