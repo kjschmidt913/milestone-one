@@ -34,11 +34,18 @@ def adjustToList(colRow):
 def placeOnBoard(position, player):
     if (board[position[1]][position[0]] == " "):
         board[position[1]][position[0]] = player
+
         printBoard()
         if player == playerOne:
             print("Player Two's Turn!")
         else:
             print("Player One's Turn!")
+
+        #If len(playerOneChoices) >= 3, call checkWinner
+            #If checkWinner == False, print the board and keep going (what I already have here)
+            #else winnerAnnouncement
+
+        
     else:
         playerOneChoices.pop()
         print("That spot already has a marker. Please choose again")
@@ -68,14 +75,31 @@ printBoard()
 playerOneChoices = []
 playerTwoChoices = []
 
+def checkWinner():
+    #very sure I can use a nested for loop to circle through these. hard coding just for now
+    top = board[1][1] == board[1][3] and board[1][1] == board[1][5]
+    middle = board[3][1] == board[3][3] and board[3][1] == board[3][5]
+    bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5]
+    diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1]
+    diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5]
+    colOne = board[1][1] == board[3][1] and board[1][1] == [5][1]
+    colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3]
+    colThree = board[1][5] == board[3][5] and board[1][5] == [5][5]
+
+    return top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree
+
 
 def choose():
     winner = False
-    totalTurns = 0
-    while (not winner):
-        if totalTurns >= 6:
-            checkWinner()
 
+    while (not winner):
+
+        if len(playerOneChoices) >= 3:
+            print("checking")
+            if checkWinner():
+                print("WINNER!!!!!!!!!!!!!!")
+                break
+            
         print("Choose your spot by entering the column number then the row number.")
         choiceColumn = input("Column Number: ")
         choiceRow = input("Row Number: ")
@@ -83,6 +107,8 @@ def choose():
         if not validInput(choiceColumn, choiceRow):
             print("Invalid space. Please enter valid numbers")
             continue
+
+        
 
         #if it's player one
         if (len(playerOneChoices) == len(playerTwoChoices)):
@@ -102,6 +128,3 @@ def choose():
 
         
 choose()
-
-def checkWinner():
-    print("hi")
