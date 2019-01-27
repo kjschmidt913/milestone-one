@@ -36,18 +36,12 @@ def placeOnBoard(position, player):
         board[position[1]][position[0]] = player
 
         printBoard()
-        if player == playerOne:
-            print("Player Two's Turn!")
-        else:
-            print("Player One's Turn!")
-
-        #If len(playerOneChoices) >= 3, call checkWinner
-            #If checkWinner == False, print the board and keep going (what I already have here)
-            #else winnerAnnouncement
-
         
     else:
-        playerOneChoices.pop()
+        if player == playerOne:
+            playerOneChoices.pop()
+        else:
+            playerTwoChoices.pop()
         print("That spot already has a marker. Please choose again")
 
 def validInput(col, row):
@@ -99,6 +93,10 @@ def checkWinner():
 def choose():
 
     while not checkWinner():
+        if (len(playerOneChoices) == len(playerTwoChoices)):
+            print("Player One's Turn!")
+        else:
+            print("Player Two's Turn!")
             
         print("Choose your spot by entering the column number then the row number.")
         choiceColumn = input("Column Number: ")
@@ -108,7 +106,6 @@ def choose():
             print("Invalid space. Please enter valid numbers")
             continue
 
-        
 
         #if it's player one
         if (len(playerOneChoices) == len(playerTwoChoices)):
