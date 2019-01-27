@@ -6,6 +6,9 @@ board = [
     ["  ","-","-","-","-","-"],
     ["3 "," ","|"," ","|"," "]
 ]
+playerOne = " "
+playerOneChoices = []
+playerTwoChoices = []
 
 def printBoard():
     print("\n")
@@ -47,28 +50,6 @@ def placeOnBoard(position, player):
 def validInput(col, row):
     return int(row) in range(1, 4) and int(col) in range(1, 4)
 
-
-#Game playing starts here
-playerOne = " "
-
-while(playerOne != "X") and (playerOne != "O"):
-    playerOne = input("Player One, choose either X or O for your marker: ")
-    if playerOne == "X":
-        playerTwo = "O"
-    elif playerOne == "O":
-        playerTwo = "X"
-    else:
-        print("Not a valid marker. Please choose again.")
-        continue
-    
-    print(f"Player Two, your marker is {playerTwo}")
-
-
-printBoard()
-
-playerOneChoices = []
-playerTwoChoices = []
-
 def checkWinner():
     if len(playerOneChoices) >= 3:
         #very sure I can use a nested for loop to circle through these. hard coding just for now
@@ -89,9 +70,7 @@ def checkWinner():
     else:
         return False
 
-
 def choose():
-
     while not checkWinner():
         if (len(playerOneChoices) == len(playerTwoChoices)):
             print("Player One's Turn!")
@@ -105,7 +84,6 @@ def choose():
         if not validInput(choiceColumn, choiceRow):
             print("Invalid space. Please enter valid numbers")
             continue
-
 
         #if it's player one
         if (len(playerOneChoices) == len(playerTwoChoices)):
@@ -126,5 +104,20 @@ def choose():
     if len(playerOneChoices) == 5 and not checkWinner():
         print("No one wins")
 
-        
+
+#Game playing starts here
+while(playerOne != "X") and (playerOne != "O"):
+    playerOne = input("Player One, choose either X or O for your marker: ")
+    if playerOne == "X":
+        playerTwo = "O"
+    elif playerOne == "O":
+        playerTwo = "X"
+    else:
+        print("Not a valid marker. Please choose again.")
+        continue
+    
+    print(f"Player Two, your marker is {playerTwo}")
+
+
+printBoard()
 choose()
