@@ -76,29 +76,29 @@ playerOneChoices = []
 playerTwoChoices = []
 
 def checkWinner():
-    #very sure I can use a nested for loop to circle through these. hard coding just for now
-    top = board[1][1] == board[1][3] and board[1][1] == board[1][5]
-    middle = board[3][1] == board[3][3] and board[3][1] == board[3][5]
-    bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5]
-    diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1]
-    diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5]
-    colOne = board[1][1] == board[3][1] and board[1][1] == [5][1]
-    colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3]
-    colThree = board[1][5] == board[3][5] and board[1][5] == [5][5]
+    if len(playerOneChoices) >= 3:
+        #very sure I can use a nested for loop to circle through these. hard coding just for now
+        top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
+        middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
+        bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5] and board[5][1] != " "
+        diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
+        diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
+        colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
+        colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
+        colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
 
-    return top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree
+        if top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree:
+            print("You have won the game!")
+
+        return top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree
+
+    else:
+        return False
 
 
 def choose():
-    winner = False
 
-    while (not winner):
-
-        if len(playerOneChoices) >= 3:
-            print("checking")
-            if checkWinner():
-                print("WINNER!!!!!!!!!!!!!!")
-                break
+    while not checkWinner():
             
         print("Choose your spot by entering the column number then the row number.")
         choiceColumn = input("Column Number: ")
@@ -125,6 +125,9 @@ def choose():
             #placing on board
             placeOnBoard(boardposition, playerTwo)
             continue
+    
+    if len(playerOneChoices) == 5 and not checkWinner():
+        print("No one wins")
 
         
 choose()
