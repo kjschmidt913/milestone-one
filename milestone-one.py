@@ -1,9 +1,10 @@
 board = [
-    [" ","|"," ","|"," "],
-    ["-","-","-","-","-"],
-    [" ","|"," ","|"," "],
-    ["-","-","-","-","-"],
-    [" ","|"," ","|"," "]
+    ["  ", "1", " ", "2", " ", "3"],
+    ["1","  ","|"," ","|"," "],
+    ["  ","-","-","-","-","-"],
+    ["2","  ","|"," ","|"," "],
+    ["  ","-","-","-","-","-"],
+    ["3","  ","|"," ","|"," "]
 ]
 
 def printBoard():
@@ -30,4 +31,24 @@ while(playerOne != "X") and (playerOne != "O"):
 
 
 printBoard()
+
+playerOneChoices = []
+playerTwoChoices = []
+
+
+def choose():
+    print("Choose your spot by entering the column number then the row number.")
+    choiceColumn = input("Column Number: ")
+    choiceRow = input("Row Number: ")
+
+    #if it's player one
+    if (len(playerOneChoices) == len(playerTwoChoices)):
+        playerOneChoices.append([int(choiceColumn), int(choiceRow)])
+    else:
+        playerTwoChoices.append([int(choiceColumn), int(choiceRow)])
+
+    print(playerOneChoices)
+
+
+choose()
     
