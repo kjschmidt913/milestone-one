@@ -1,10 +1,10 @@
 board = [
     ["  ", "1", " ", "2", " ", "3"],
-    ["1","  ","|"," ","|"," "],
+    ["1 "," ","|"," ","|"," "],
     ["  ","-","-","-","-","-"],
-    ["2","  ","|"," ","|"," "],
+    ["2 "," ","|"," ","|"," "],
     ["  ","-","-","-","-","-"],
-    ["3","  ","|"," ","|"," "]
+    ["3 "," ","|"," ","|"," "]
 ]
 
 def printBoard():
@@ -38,30 +38,56 @@ playerTwoChoices = []
 
 
 def choose():
-    print("Choose your spot by entering the column number then the row number.")
-    choiceColumn = input("Column Number: ")
-    choiceRow = input("Row Number: ")
+    winner = False
+    while (not winner):
+        print("Choose your spot by entering the column number then the row number.")
+        choiceColumn = input("Column Number: ")
+        choiceRow = input("Row Number: ")
 
-    #if it's player one
-    if (len(playerOneChoices) == len(playerTwoChoices)):
-        playerOneChoices.append([int(choiceColumn), int(choiceRow)])
-        #adjusting row number
-        if (playerOneChoices[-1][1] == 3):
-            playerOneChoices[-1][1] = 5
-        elif(playerOneChoices[-1][1] == 2):
-            playerOneChoices[-1][1] = 3
-        #adjusting column number
-        if (playerOneChoices[-1][0] == 3):
-            playerOneChoices[-1][0] = 5
-        elif(playerOneChoices[-1][0] == 2):
-            playerOneChoices[-1][0] = 3
+        #if it's player one
+        if (len(playerOneChoices) == len(playerTwoChoices)):
+            playerOneChoices.append([int(choiceColumn), int(choiceRow)])
+            #adjusting row number
+            if (playerOneChoices[-1][1] == 3):
+                playerOneChoices[-1][1] = 5
+            elif(playerOneChoices[-1][1] == 2):
+                playerOneChoices[-1][1] = 3
+            #adjusting column number
+            if (playerOneChoices[-1][0] == 3):
+                playerOneChoices[-1][0] = 5
+            elif(playerOneChoices[-1][0] == 2):
+                playerOneChoices[-1][0] = 3
+            
+            if (board[playerOneChoices[-1][1]][playerOneChoices[-1][0]] == " "):
+                board[playerOneChoices[-1][1]][playerOneChoices[-1][0]] = playerOne
+                printBoard()
+                print("Player Two's Turn!")
+            else:
+                playerOneChoices.pop()
+                print("That spot already has a marker. Please choose again")
+                continue
+        else:
+            playerTwoChoices.append([int(choiceColumn), int(choiceRow)])
+            #adjusting row number
+            if (playerTwoChoices[-1][1] == 3):
+                playerTwoChoices[-1][1] = 5
+            elif(playerTwoChoices[-1][1] == 2):
+                playerTwoChoices[-1][1] = 3
+            #adjusting column number
+            if (playerTwoChoices[-1][0] == 3):
+                playerTwoChoices[-1][0] = 5
+            elif(playerTwoChoices[-1][0] == 2):
+                playerTwoChoices[-1][0] = 3
+            
+            if (board[playerTwoChoices[-1][1]][playerTwoChoices[-1][0]] == " "):
+                board[playerTwoChoices[-1][1]][playerTwoChoices[-1][0]] = playerTwo
+                printBoard()
+                print("Player One's Turn!")
+            else:
+                playerTwoChoices.pop()
+                print("That spot already has a marker. Please choose again")
+                continue
         
-        board[playerOneChoices[-1][1]][playerOneChoices[-1][0]] = playerOne
-        printBoard()
-    else:
-        playerTwoChoices.append([int(choiceColumn), int(choiceRow)])
-
-    print(playerOneChoices)
 
 
 choose()
