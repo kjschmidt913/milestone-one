@@ -51,11 +51,14 @@ def validInput(col, row):
 def checkWinner():
     if len(playerOneChoices) >= 3:
         #very sure I can use a nested for loop to circle through these. hard coding just for now
-        # for row in board[::2]:
+        #think through what place this should start at for first loop
+        #start at middle spot in the next loop so you can subtract 2 from the index to compare it!
+        #this loop set would only be checking for top middle bottom
+        # for row in board[1::2]:
         #     for spot in row[::2]:
         #         if spot == " ":
         #             continue
-        #         elif spot == board[row][index(spot)+2]
+        #         elif spot == board[row][index(spot)-2]
 
         top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
         middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
