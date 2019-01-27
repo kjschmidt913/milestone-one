@@ -13,7 +13,8 @@ def printBoard():
         for spot in row:
             print(spot, end="") 
         print(" ")
-    print("\n") 
+    print("\n")
+
 
 playerOne = " "
 
@@ -44,6 +45,19 @@ def choose():
     #if it's player one
     if (len(playerOneChoices) == len(playerTwoChoices)):
         playerOneChoices.append([int(choiceColumn), int(choiceRow)])
+        #adjusting row number
+        if (playerOneChoices[-1][1] == 3):
+            playerOneChoices[-1][1] = 5
+        elif(playerOneChoices[-1][1] == 2):
+            playerOneChoices[-1][1] = 3
+        #adjusting column number
+        if (playerOneChoices[-1][0] == 3):
+            playerOneChoices[-1][0] = 5
+        elif(playerOneChoices[-1][0] == 2):
+            playerOneChoices[-1][0] = 3
+        
+        board[playerOneChoices[-1][1]][playerOneChoices[-1][0]] = playerOne
+        printBoard()
     else:
         playerTwoChoices.append([int(choiceColumn), int(choiceRow)])
 
@@ -52,3 +66,6 @@ def choose():
 
 choose()
     
+#3 always == 5
+#2 always  == 3
+#1 always == 1
