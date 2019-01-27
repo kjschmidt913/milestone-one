@@ -48,6 +48,9 @@ def choose():
         if (len(playerOneChoices) == len(playerTwoChoices)):
             playerOneChoices.append([int(choiceColumn), int(choiceRow)])
             #adjusting row number
+            #3 always == 5
+            #2 always  == 3
+            #1 always == 1
             if (playerOneChoices[-1][1] == 3):
                 playerOneChoices[-1][1] = 5
             elif(playerOneChoices[-1][1] == 2):
@@ -57,7 +60,7 @@ def choose():
                 playerOneChoices[-1][0] = 5
             elif(playerOneChoices[-1][0] == 2):
                 playerOneChoices[-1][0] = 3
-            
+            #placing on board
             if (board[playerOneChoices[-1][1]][playerOneChoices[-1][0]] == " "):
                 board[playerOneChoices[-1][1]][playerOneChoices[-1][0]] = playerOne
                 printBoard()
@@ -66,6 +69,8 @@ def choose():
                 playerOneChoices.pop()
                 print("That spot already has a marker. Please choose again")
                 continue
+        
+        #if it's player two
         else:
             playerTwoChoices.append([int(choiceColumn), int(choiceRow)])
             #adjusting row number
@@ -78,7 +83,7 @@ def choose():
                 playerTwoChoices[-1][0] = 5
             elif(playerTwoChoices[-1][0] == 2):
                 playerTwoChoices[-1][0] = 3
-            
+            #placing on board
             if (board[playerTwoChoices[-1][1]][playerTwoChoices[-1][0]] == " "):
                 board[playerTwoChoices[-1][1]][playerTwoChoices[-1][0]] = playerTwo
                 printBoard()
@@ -88,10 +93,6 @@ def choose():
                 print("That spot already has a marker. Please choose again")
                 continue
         
-
-
 choose()
-    
-#3 always == 5
-#2 always  == 3
-#1 always == 1
+
+def checkWinner():
