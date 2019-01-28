@@ -53,26 +53,28 @@ def checkWinner():
         #very sure I can use a nested for loop to circle through these. hard coding just for now
         #think through what place this should start at for first loop
         #start at middle spot in the next loop so you can subtract 2 from the index to compare it!
-        #this loop set would only be checking for top middle bottom
-        # for row in board[1::2]:
-        #     for spot in row[::2]:
-        #         if spot == " ":
-        #             continue
-        #         elif spot == board[row][index(spot)-2]
+        
+        #checks for top middle bottom row wins
+        for row in board[1::2]:
+            if row[3] == " ":
+                continue
+            elif row[3] == row[1] and row[3] == row[5]:
+                print("You have won the game!")
+                return True
 
-        top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
-        middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
-        bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5] and board[5][1] != " "
-        diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
-        diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
-        colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
-        colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
-        colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
+        # top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
+        # middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
+        # bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5] and board[5][1] != " "
+        # diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
+        # diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
+        # colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
+        # colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
+        # colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
 
-        if top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree:
-            print("You have won the game!")
+        # if top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree:
+        #     print("You have won the game!")
 
-        return top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree
+        # return top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree
 
     else:
         return False
