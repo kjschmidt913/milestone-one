@@ -35,7 +35,6 @@ def adjustToList(colRow):
 def placeOnBoard(position, player):
     if (board[position[1]][position[0]] == " "):
         board[position[1]][position[0]] = player
-
         printBoard()
         
     else:
@@ -50,15 +49,13 @@ def validInput(col, row):
 
 def checkWinner():
     if len(playerOneChoices) >= 3:
-        
         #checks for top middle bottom row wins
         for row in board[1::2]:
             if row[3] == " ":
                 continue
             elif row[3] == row[1] and row[3] == row[5]:
                 print("You have won the game!")
-                return True
-        
+                return True  
         #checks for column wins
         for i in range(1, 6, 2):
             if board[3][i] == " ":
@@ -66,7 +63,7 @@ def checkWinner():
             elif board[3][i] == board[3-2][i] and board[3][i] == board[3+2][i]:
                 print("You have won the game!")
                 return True
-        
+        #checks for diag wins
         diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
         diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
         
@@ -75,7 +72,7 @@ def checkWinner():
             return True
         else:
             return False
-
+    
     else:
         return False
 
@@ -113,9 +110,6 @@ def choose():
             #placing on board
             placeOnBoard(boardposition, playerTwo)
             continue
-    
-    
-
 
 #Game playing starts here
 while(playerOne != "X") and (playerOne != "O"):
@@ -129,7 +123,6 @@ while(playerOne != "X") and (playerOne != "O"):
         continue
     
     print(f"Player Two, your marker is {playerTwo}")
-
 
 printBoard()
 choose()
