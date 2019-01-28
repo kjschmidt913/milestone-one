@@ -79,20 +79,12 @@ def checkWinner():
     else:
         return False
 
-        # top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
-        # middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
-        # bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5] and board[5][1] != " "
-        
-        # colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
-        # colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
-        # colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
-
 def choose():
     while not checkWinner():
         if len(playerOneChoices) == 5:
             print("No one wins")
             break
-            
+
         if (len(playerOneChoices) == len(playerTwoChoices)):
             print("Player One's Turn!")
         else:
