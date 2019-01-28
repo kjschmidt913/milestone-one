@@ -61,12 +61,28 @@ def checkWinner():
             elif row[3] == row[1] and row[3] == row[5]:
                 print("You have won the game!")
                 return True
+        
+        #checks for column wins
+        for i in range(1, 6, 2):
+            for k in range(3, 6, 2):
+                if board[k][i] == " ":
+                    continue
+                elif board[k][i] == board[k-2][i] and board[k][i] == board[k+2][i]:
+                    print("You have won the game!")
+                    return True
+        
+
+        # colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
+        # colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
+        # colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
 
         # top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
         # middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
         # bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5] and board[5][1] != " "
+        
         # diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
         # diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
+        
         # colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
         # colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
         # colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
