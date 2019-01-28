@@ -50,9 +50,6 @@ def validInput(col, row):
 
 def checkWinner():
     if len(playerOneChoices) >= 3:
-        #very sure I can use a nested for loop to circle through these. hard coding just for now
-        #think through what place this should start at for first loop
-        #start at middle spot in the next loop so you can subtract 2 from the index to compare it!
         
         #checks for top middle bottom row wins
         for row in board[1::2]:
@@ -64,39 +61,38 @@ def checkWinner():
         
         #checks for column wins
         for i in range(1, 6, 2):
-            for k in range(3, 6, 2):
-                if board[k][i] == " ":
-                    continue
-                elif board[k][i] == board[k-2][i] and board[k][i] == board[k+2][i]:
-                    print("You have won the game!")
-                    return True
+            if board[3][i] == " ":
+                continue
+            elif board[3][i] == board[3-2][i] and board[3][i] == board[3+2][i]:
+                print("You have won the game!")
+                return True
         
+        diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
+        diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
+        
+        if diagOne or diagTwo:
+            print("You have won the game!")
+            return True
+        else:
+            return False
 
-        # colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
-        # colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
-        # colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
+    else:
+        return False
 
         # top = board[1][1] == board[1][3] and board[1][1] == board[1][5] and board[1][1] != " "
         # middle = board[3][1] == board[3][3] and board[3][1] == board[3][5] and board[3][1] != " "
         # bottom = board[5][1] == board[5][3] and board[5][1] == board[5][5] and board[5][1] != " "
         
-        # diagOne = board[1][5] == board[3][3] and board[1][5] == board[5][1] and board[1][5] != " "
-        # diagTwo = board[1][1] == board[3][3] and board[1][1] == board[5][5] and board[1][1] != " "
-        
         # colOne = board[1][1] == board[3][1] and board[1][1] == board[5][1] and board[1][1] != " "
         # colTwo = board[1][3] == board[3][3] and board[1][3] == board[5][3] and board[1][3] != " "
         # colThree = board[1][5] == board[3][5] and board[1][5] == board[5][5] and board[1][5] != " "
 
-        # if top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree:
-        #     print("You have won the game!")
-
-        # return top or middle or bottom or diagOne or diagTwo or colOne or colTwo or colThree
-
-    else:
-        return False
-
 def choose():
     while not checkWinner():
+        if len(playerOneChoices) == 5:
+            print("No one wins")
+            break
+            
         if (len(playerOneChoices) == len(playerTwoChoices)):
             print("Player One's Turn!")
         else:
@@ -126,8 +122,7 @@ def choose():
             placeOnBoard(boardposition, playerTwo)
             continue
     
-    if len(playerOneChoices) == 5 and not checkWinner():
-        print("No one wins")
+    
 
 
 #Game playing starts here
@@ -146,3 +141,4 @@ while(playerOne != "X") and (playerOne != "O"):
 
 printBoard()
 choose()
+
